@@ -178,7 +178,7 @@ class Operation
             throw new OperationInvalidTypeException($operationType);
         }
 
-        if ($operationType == OperationType::DEPOSIT) {
+        if ($operationType === OperationType::DEPOSIT) {
             return Operation::createDepositOperation($client, $date, $amount, $currency);
         } else {
             return Operation::createWithdrawOperation($client, $date, $amount, $currency);

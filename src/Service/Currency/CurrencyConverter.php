@@ -64,7 +64,7 @@ class CurrencyConverter
 
     /* Global flag to not call API but instead use predefined rates, for testing purposes
     */
-    public static function setUsePresetRates(bool $yesOrNo)
+    public static function setUsePresetRates(bool $yesOrNo): void
     {
         CurrencyConverter::$usePresetRates = $yesOrNo;
     }

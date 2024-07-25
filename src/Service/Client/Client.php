@@ -39,14 +39,15 @@ class Client
         return $this->type;
     }
 
-    public static function createClientFromType(string $clientId, string $clientType): Client {
+    public static function createClientFromType(string $clientId, string $clientType): Client
+    {
         if (!ClientType::isValidClientType($clientType)) {
             throw new InvalidClientTypeException($clientType);
         }
 
-        if ($clientType == ClientType::PRIVATE) {
+        if ($clientType === ClientType::PRIVATE) {
             return new PrivateClient($clientId);
-        } else if ($clientType == ClientType::BUSINESS) {
+        } elseif ($clientType === ClientType::BUSINESS) {
             return new BusinessClient($clientId);
         }
     }

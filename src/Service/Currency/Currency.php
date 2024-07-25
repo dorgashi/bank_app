@@ -31,7 +31,7 @@ abstract class Currency
     public const CURRENCY_ARRAY = [
         Currency::EUR,
         Currency::USD,
-        Currency::JPY
+        Currency::JPY,
     ];
 
     /**
@@ -43,9 +43,9 @@ abstract class Currency
         CURRENCY::JPY => 0,
     ];
 
-    public static function isValidCurrency(string $currency)
+    public static function isValidCurrency(string $currency): bool
     {
-        return in_array($currency, Currency::CURRENCY_ARRAY);
+        return in_array($currency, Currency::CURRENCY_ARRAY, true);
     }
 
     public static function getDecimalPlaces(string $currency): int

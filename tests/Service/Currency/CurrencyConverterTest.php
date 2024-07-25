@@ -28,7 +28,7 @@ class CurrencyTest extends TestCase
     {
         $this->expectException(InvalidCurrencyException::class);
         $this->expectExceptionCode(ExceptionCode::INVALID_CURRENCY);
-        $this->expectExceptionMessage(sprintf("Unknown currency \"$invalidCurrency\", available currencies: %s", join(", ", array_keys(Currency::DECIMAL_PLACES))));
+        $this->expectExceptionMessage(sprintf("Unknown currency \"$invalidCurrency\", available currencies: %s", join(", ", Currency::CURRENCY_ARRAY)));
 
         CurrencyConverter::convert("1", $fromCurrency, $toCurrency);
     }

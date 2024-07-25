@@ -26,7 +26,7 @@ class CsvParser
         $this->lineLength = $lineLength;
     }
 
-    public function parseFile(string $path, array $columnNames, array $columnTransforms = [])
+    public function parseFile(string $path, array $columnNames, array $columnTransforms = []): array
     {
         if (!$this->validateFileFormat($path, FileFormat::CSV)) {
             throw new InvalidFileFormatException($path, FileFormat::CSV);
@@ -76,7 +76,7 @@ class CsvParser
         return $results;
     }
 
-    public static function validateFileFormat(string $path, string $expectedFormat)
+    public static function validateFileFormat(string $path, string $expectedFormat): bool
     {
         $info = pathinfo($path);
 

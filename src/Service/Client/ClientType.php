@@ -23,10 +23,11 @@ abstract class ClientType
      */
     public const TYPE_ARRAY = [
         ClientType::PRIVATE,
-        ClientType::BUSINESS
+        ClientType::BUSINESS,
     ];
 
-    public static function isValidClientType(string $type): bool {
-        return in_array($type, ClientType::TYPE_ARRAY);
+    public static function isValidClientType(string $type): bool
+    {
+        return in_array($type, ClientType::TYPE_ARRAY, true);
     }
 }

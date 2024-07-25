@@ -55,7 +55,7 @@ class Ledger
     public function getOrCreateClient(string $clientId, string $clientType): Client
     {
         $client = $this->getClient($clientId);
-        
+
         if ($client === null) {
             $client = Client::createClientFromType($clientId, $clientType);
         }
@@ -79,7 +79,7 @@ class Ledger
         return null;
     }
 
-    public function getRecordsForClientForWeek(string $clientId, \DateTime $date)
+    public function getRecordsForClientForWeek(string $clientId, \DateTime $date): array
     {
         $records = $this->getRecordsForClient($clientId);
         $isoWeek = $date->format('oW');
@@ -89,7 +89,7 @@ class Ledger
         });
     }
 
-    public function getWithdrawalsForClientForWeek(string $clientId, \DateTime $date)
+    public function getWithdrawalsForClientForWeek(string $clientId, \DateTime $date): array
     {
         $records = $this->getRecordsForClient($clientId);
         if (!$records) {
@@ -117,9 +117,9 @@ class Ledger
     {
         $client = $operation->getClient();
 
-        if ($operation->getType() == OperationType::DEPOSIT) {
+        if ($operation->getType() === OperationType::DEPOSIT) {
             return $this->getDepositCommissionFee($operation);
-        } elseif ($client->getType() == ClientType::BUSINESS) {
+        } elseif ($client->getType() === ClientType::BUSINESS) {
             return $this->getBusinessClientWithdrawalCommissionFee($operation);
         }
 
@@ -129,6 +129,7 @@ class Ledger
     public function getDepositCommissionFee(Operation $operation): string
     {
         $fee = Math::mul($operation->getAmount(), Client::DEPOSIT_COMMISSION_FEE_PROPORTION);
+
         return $operation->roundUpCommissionFee($fee, $operation->getCurrencyDecimalPlaces());
     }
 

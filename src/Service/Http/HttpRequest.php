@@ -16,7 +16,7 @@ class HttpRequest
         $this->url = $url;
     }
 
-    public function get()
+    public function get(): array
     {
         $ch = curl_init($this->url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
